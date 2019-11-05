@@ -1,9 +1,11 @@
 #include <stdio.h>
 #include "minunit.h"
-#include "some_code.h"
+#include "linkedlist.h"
 #include <string.h>
 
 int tests_run = 0;
+
+// --------------------------------------------------------------------------------
 
 static char * positive_number_test() {
     mu_assert("number should be multiplied by two", timesTwo(4) == 8);
@@ -31,7 +33,7 @@ static char * simple_name_test() {
 
 
 
-// -----------------------------------------
+// ------------------------------------------------------------------------------------
 
 static char * all_tests() {
     mu_run_test(positive_number_test);
