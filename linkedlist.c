@@ -78,10 +78,14 @@ int getFirst(LinkedList * list)
 		return list->first->value;
 }
 
-// int getLast()
-// {
-
-// }
+int getLast(LinkedList list)
+{
+	Node * node = list.last;
+	if(node == NULL)
+		return -1;
+	else 
+		return node->value;
+}
 
 // int removeNode(int index)
 // {
