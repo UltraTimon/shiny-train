@@ -17,6 +17,13 @@ static char * one_element_test() {
     return 0;
 }
 
+static char * two_element_test() {
+    add(5, myList);
+    add(7, myList);
+    mu_assert("second element should be 7", get(2, myList) == 7);
+    return 0;
+}
+
 // ------------------------------------------------------------------------------------
 
 static char * all_tests() {

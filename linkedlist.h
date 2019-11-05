@@ -21,7 +21,7 @@ void add(int i, LinkedList * list);
 void addFirst(int i);
 void addLast(int i);
 
-int get(int index);
+int get(int index, LinkedList * list);
 int getFirst(LinkedList * list);
 int getLast();
 

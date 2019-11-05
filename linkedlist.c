@@ -41,10 +41,23 @@ void addLast(int i)
 
 }
 
-// int get(int index)
-// {
-// 	return index;
-// }
+/** 0-indexed */
+int get(int index, LinkedList * list)
+{
+	int count = 0;
+	Node * current = getFirst(list);
+	if(current = NULL)
+		return NULL;
+	
+	while(count != index) {
+		if(current->next == NULL) 
+			return NULL;
+		current = current->next;
+		count++;
+	}
+
+	return current->value;
+}
 
 int getFirst(LinkedList * list) 
 {
