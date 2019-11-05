@@ -8,19 +8,21 @@ struct Node {
 	struct Node * next;
 };
 
-typedef struct List List;
+typedef struct LinkedList LinkedList;
 
 struct LinkedList {
 	Node * first;
 	Node * last;
 };
 
-void add(int i);
+LinkedList * getNewLinkedList();
+
+void add(int i, LinkedList * list);
 void addFirst(int i);
 void addLast(int i);
 
 int get(int index);
-int getFirst();
+int getFirst(LinkedList * list);
 int getLast();
 
 int remove(int index);

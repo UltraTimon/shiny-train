@@ -5,6 +5,10 @@
 
 int tests_run = 0;
 
+// Setup
+
+LinkedList * myList = getNewLinkedList();
+
 // --------------------------------------------------------------------------------
 
 static char * positive_number_test() {

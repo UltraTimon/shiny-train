@@ -9,12 +9,20 @@ struct Node {
 	Node * next;
 };
 
-typedef struct List List;
+typedef struct LinkedList LinkedList;
 
 struct LinkedList {
 	Node * first;
 	Node * last;
 };
+
+LinkedList * getNewLinkedList() {
+	LinkedList * newList = malloc(sizeof(Node *));
+	newList->first = NULL;
+	newList->last = NULL;
+
+	return newList;
+}
 
 Node * getNewNode(int value) {
 	Node * newNode = malloc(sizeof(int) + sizeof(Node *));
@@ -24,10 +32,16 @@ Node * getNewNode(int value) {
 	return newNode;
 }
 
-void add(int i)
+void add(int i, LinkedList * list)
 {
 	Node * newNode = getNewNode(i);
-
+	if(list->first == NULL) {
+		list->first = newNode;
+		list->last = newNode;
+		return;
+	} else {
+		list->last->next = newNode;
+	}
 }
 
 void addFirst(int i)
@@ -42,12 +56,15 @@ void addLast(int i)
 
 int get(int index)
 {
-
+	
 }
 
-int getFirst()
+int getFirst(LinkedList * list) 
 {
-
+	if(list->first == NULL)
+		return -1;
+	else
+		return list->first->value;
 }
 
 int getLast()
