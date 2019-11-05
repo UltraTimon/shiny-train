@@ -8,6 +8,13 @@ struct Node {
 	struct Node * next;
 };
 
+typedef struct List List;
+
+struct LinkedList {
+	Node * first;
+	Node * last;
+};
+
 void add(int i);
 void addFirst(int i);
 void addLast(int i);

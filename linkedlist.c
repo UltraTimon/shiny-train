@@ -9,7 +9,14 @@ struct Node {
 	Node * next;
 };
 
-Node * newNode(int value) {
+typedef struct List List;
+
+struct LinkedList {
+	Node * first;
+	Node * last;
+};
+
+Node * getNewNode(int value) {
 	Node * newNode = malloc(sizeof(int) + sizeof(Node *));
 	newNode->value = value;
 	newNode->next = NULL;
@@ -19,7 +26,8 @@ Node * newNode(int value) {
 
 void add(int i)
 {
-	
+	Node * newNode = getNewNode(i);
+
 }
 
 void addFirst(int i)
