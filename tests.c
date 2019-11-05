@@ -7,47 +7,27 @@ int tests_run = 0;
 
 // Setup
 
-LinkedList * myList = getNewLinkedList();
+LinkedList * myList;
 
 // --------------------------------------------------------------------------------
 
-static char * positive_number_test() {
-    mu_assert("number should be multiplied by two", timesTwo(4) == 8);
+static char * one_element_test() {
+    add(5, myList);
+    mu_assert("first element should be 5", getFirst(myList) == 5);
     return 0;
 }
-
-static char * negative_number_test() {
-    mu_assert("negative number should yield negative double", timesTwo(-4) == -8);
-    return 0;
-}
-
-static char * zero_test() {
-    mu_assert("zero times two should yield zero", timesTwo(0) == 0);
-    return 0;
-}
-
-static char * simple_name_test() {
-	char result[20];
-	greetMe(result);
-
-    mu_assert("name should be greeted", strcmp("Hi, there!", greetMe(result)) == 0);
-
-    return 0;
-}
-
-
 
 // ------------------------------------------------------------------------------------
 
 static char * all_tests() {
-    mu_run_test(positive_number_test);
-    mu_run_test(negative_number_test);
-    mu_run_test(zero_test);
-    mu_run_test(simple_name_test);
+    mu_run_test(one_element_test);
     return 0;
 }
 
 int main(int argc, char **argv) {
+    // setup
+    myList = getNewLinkedList();
+
     char *result = all_tests();
     if (result != 0) {
         printf("%s\n", result);

@@ -1,20 +1,7 @@
 #include <stdio.h>
 #include "linkedlist.h"
 #include <string.h>
-
-typedef struct Node Node;
-
-struct Node {
-	int value;
-	Node * next;
-};
-
-typedef struct LinkedList LinkedList;
-
-struct LinkedList {
-	Node * first;
-	Node * last;
-};
+#include <stdlib.h>
 
 LinkedList * getNewLinkedList() {
 	LinkedList * newList = malloc(sizeof(Node *));
@@ -54,10 +41,10 @@ void addLast(int i)
 
 }
 
-int get(int index)
-{
-	
-}
+// int get(int index)
+// {
+// 	return index;
+// }
 
 int getFirst(LinkedList * list) 
 {
@@ -67,23 +54,23 @@ int getFirst(LinkedList * list)
 		return list->first->value;
 }
 
-int getLast()
-{
+// int getLast()
+// {
 
-}
+// }
 
-int remove(int index)
-{
+// int removeNode(int index)
+// {
 
-}
+// }
 
-int removeFirst()
-{
+// int removeFirst()
+// {
 
-}
+// }
 
-int removeLast()
-{
+// int removeLast()
+// {
 
-}
+// }
 

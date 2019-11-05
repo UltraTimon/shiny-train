@@ -25,7 +25,7 @@ int get(int index);
 int getFirst(LinkedList * list);
 int getLast();
 
-int remove(int index);
+int removeNode(int index);
 int removeFirst();
 int removeLast();
 
