@@ -20,7 +20,18 @@ static char * one_element_test() {
 static char * two_element_test() {
     add(5, myList);
     add(7, myList);
-    mu_assert("second element should be 7", get(2, myList) == 7);
+    printf("res: %d\n",get(2, myList));
+    mu_assert("second element should be 7", get(1, myList) == 7);
+    return 0;
+}
+
+static char * addFirst_test() {
+    add(5, myList);
+    add(7, myList);
+    addFirst(3, myList);
+    // printf("res: %d\n",get(2, myList));
+    mu_assert("first element should be 3", get(0, myList) == 3);
+    mu_assert("first element should be 3, even with a new list", get(0, getNewLinkedList()) == 3);
     return 0;
 }
 
@@ -28,6 +39,8 @@ static char * two_element_test() {
 
 static char * all_tests() {
     mu_run_test(one_element_test);
+    mu_run_test(two_element_test);
+    mu_run_test(addFirst_test);
     return 0;
 }
 

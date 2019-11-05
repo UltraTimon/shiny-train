@@ -18,7 +18,7 @@ struct LinkedList {
 LinkedList * getNewLinkedList();
 
 void add(int i, LinkedList * list);
-void addFirst(int i);
+void addFirst(int i, LinkedList * list);
 void addLast(int i);
 
 int get(int index, LinkedList * list);

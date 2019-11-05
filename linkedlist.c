@@ -31,9 +31,11 @@ void add(int i, LinkedList * list)
 	}
 }
 
-void addFirst(int i)
+void addFirst(int i, LinkedList * list)
 {
-
+	Node * newNode = getNewNode(i);
+	newNode->next = list->first;
+	list->first = newNode;
 }
 
 void addLast(int i)
@@ -45,13 +47,13 @@ void addLast(int i)
 int get(int index, LinkedList * list)
 {
 	int count = 0;
-	Node * current = getFirst(list);
-	if(current = NULL)
-		return NULL;
+	Node * current = list->first;
+	if(current == NULL)
+		return -1;
 	
 	while(count != index) {
 		if(current->next == NULL) 
-			return NULL;
+			return -1;
 		current = current->next;
 		count++;
 	}
