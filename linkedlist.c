@@ -21,18 +21,27 @@ Node * getNewNode(int value) {
 
 void add(int i, LinkedList * list)
 {
+	if(list == NULL)
+		return;
+
 	Node * newNode = getNewNode(i);
 	if(list->first == NULL) {
 		list->first = newNode;
 		list->last = newNode;
-		return;
+	} else if (list->first == list->last) {
+		list->first->next = newNode;
+		list->last = newNode;
 	} else {
 		list->last->next = newNode;
+		list->last = newNode;
 	}
 }
 
 void addFirst(int i, LinkedList * list)
 {
+	if(list == NULL)
+		return;
+		
 	Node * newNode = getNewNode(i);
 	newNode->next = list->first;
 	list->first = newNode;
@@ -42,6 +51,9 @@ void addFirst(int i, LinkedList * list)
 
 void addLast(int i, LinkedList * list)
 {
+	if(list == NULL)
+		return;
+		
 	Node * newNode = getNewNode(i);
 	if(list->first == NULL) {
 		list->first = newNode;
@@ -55,6 +67,9 @@ void addLast(int i, LinkedList * list)
 // 0-indexed
 int get(int index, LinkedList * list)
 {
+	if(list == NULL)
+		return -1;
+
 	int count = 0;
 	Node * current = list->first;
 	if(current == NULL)
@@ -72,33 +87,79 @@ int get(int index, LinkedList * list)
 
 int getFirst(LinkedList * list) 
 {
+	if(list == NULL)
+		return -1;
+
 	if(list->first == NULL)
 		return -1;
 	else
 		return list->first->value;
 }
 
-int getLast(LinkedList list)
+int getLast(LinkedList * list)
 {
-	Node * node = list.last;
+	if(list == NULL)
+		return -1;
+
+	Node * node = list->last;
 	if(node == NULL)
 		return -1;
 	else 
 		return node->value;
 }
 
-// int removeNode(int index)
-// {
+int size(LinkedList * list) {
+	if(list == NULL)
+		return 0;
 
-// }
+	int count = 0;
+	Node * current = list->first;
 
-// int removeFirst()
-// {
+	if(current != NULL)
+		count++;
 
-// }
+	while(current->next != NULL) {
+		current = current->next;
+		count++;
+	}
 
-// int removeLast()
-// {
+	return count;
+}
 
-// }
+int removeNode(int index, LinkedList * list)
+{
+	if(list == NULL)
+		return -1;
 
+	int count = 0;
+	Node * current = list->first;
+	Node * previous = NULL;
+
+	while(count != index) {
+		if(current->next == NULL)
+			return -1;
+		
+		previous = current;
+		current = current->next;
+
+		count++;
+	}
+
+	if(previous != NULL) 	
+		previous->next = current->next;
+	
+
+	if(index == 0) {
+		list->first = list->first->next;
+	}
+
+	return current->value;
+}
+
+int removeFirst(LinkedList * list) {
+	return removeNode(0, list);
+}
+
+int removeLast(LinkedList * list) {
+	return removeNode(size(list) - 1, list);
+}

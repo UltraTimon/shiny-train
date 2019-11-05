@@ -25,8 +25,10 @@ int get(int index, LinkedList * list);
 int getFirst(LinkedList * list);
 int getLast();
 
-int removeNode(int index);
-int removeFirst();
-int removeLast();
+int removeNode(int index, LinkedList * list);
+int removeFirst(LinkedList * list);
+int removeLast(LinkedList * list);
+
+int size(LinkedList * list);
 
 #endif

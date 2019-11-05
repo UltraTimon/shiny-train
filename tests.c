@@ -11,13 +11,31 @@ LinkedList * myList;
 
 // --------------------------------------------------------------------------------
 
-static char * one_element_test() {
+static char * getFirst_test() {
+    myList = getNewLinkedList();
+
     add(5, myList);
     mu_assert("first element should be 5", getFirst(myList) == 5);
     return 0;
 }
 
-static char * two_element_test() {
+static char * getLast_test() {
+    myList = getNewLinkedList();
+
+    add(7, myList);
+    add(5, myList);
+    printf("resf : %d\n",getFirst(myList));
+    printf("resl : %d\n",getLast(myList));
+    mu_assert("last element should be 5", getLast(myList) == 5);
+
+    LinkedList * newList = getNewLinkedList();
+    mu_assert("getlast should return NULL on empty list", getLast(newList) == -1);
+    return 0;
+}
+
+static char * get_test() {
+    myList = getNewLinkedList();
+
     add(5, myList);
     add(7, myList);
     // printf("res: %d\n",get(2, myList));
@@ -26,6 +44,8 @@ static char * two_element_test() {
 }
 
 static char * addFirst_test() {
+    myList = getNewLinkedList();
+
     add(5, myList);
     add(7, myList);
     addFirst(3, myList);
@@ -40,6 +60,8 @@ static char * addFirst_test() {
 }
 
 static char * addLast_test() {
+    myList = getNewLinkedList();
+
     add(5, myList);
     add(7, myList);
     addLast(3, myList);
@@ -52,20 +74,38 @@ static char * addLast_test() {
     return 0;
 }
 
+static char * removeNode_and_size_test() {
+    myList = getNewLinkedList();
+
+    add(5, myList);
+    add(7, myList);
+    add(3, myList);
+    mu_assert("size should be 3", size(myList) == 3);
+    mu_assert("last element is 3, should be returned by remove", removeNode(2, myList) == 3);
+    mu_assert("size should be 2", size(myList) == 2);
+    mu_assert("first element is 5, should be returned by remove", removeNode(0, myList) == 5);
+    printf("size: %d\n",size(myList));
+    mu_assert("size should be 1", size(myList) == 1);
+    mu_assert("only element is 7, should be returned by remove", removeNode(0, myList) == 7);
+    mu_assert("size should be 0", size(myList) == 0);
+
+    mu_assert("removeNode on empty list should return -1 regardless of index", removeNode(1253, myList) == -1);
+    return 0;
+}
+
 // ------------------------------------------------------------------------------------
 
 static char * all_tests() {
-    mu_run_test(one_element_test);
-    mu_run_test(two_element_test);
+    mu_run_test(getFirst_test);
+    mu_run_test(getLast_test);
+    mu_run_test(get_test);
     mu_run_test(addFirst_test);
     mu_run_test(addLast_test);
+    mu_run_test(removeNode_and_size_test);
     return 0;
 }
 
 int main(int argc, char **argv) {
-    // setup
-    myList = getNewLinkedList();
-
     char *result = all_tests();
     if (result != 0) {
         printf("%s\n", result);
