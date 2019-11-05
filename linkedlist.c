@@ -36,14 +36,23 @@ void addFirst(int i, LinkedList * list)
 	Node * newNode = getNewNode(i);
 	newNode->next = list->first;
 	list->first = newNode;
+	if(list->last == NULL) 
+		list->last = newNode;
 }
 
-void addLast(int i)
+void addLast(int i, LinkedList * list)
 {
-
+	Node * newNode = getNewNode(i);
+	if(list->first == NULL) {
+		list->first = newNode;
+		list->last = newNode;
+	} else {
+		list->last->next = newNode;
+		list->last = newNode;
+	}
 }
 
-/** 0-indexed */
+// 0-indexed
 int get(int index, LinkedList * list)
 {
 	int count = 0;
