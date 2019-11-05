@@ -39,12 +39,26 @@ static char * addFirst_test() {
     return 0;
 }
 
+static char * addLast_test() {
+    add(5, myList);
+    add(7, myList);
+    addLast(3, myList);
+    // printf("res: %d\n",get(0, getNewLinkedList()));
+    mu_assert("last element should be 3", get(2, myList) == 3);
+
+    LinkedList * newList = getNewLinkedList();
+    addLast(3, newList);
+    mu_assert("last element should be 3, even with a new list", get(0, newList) == 3);
+    return 0;
+}
+
 // ------------------------------------------------------------------------------------
 
 static char * all_tests() {
     mu_run_test(one_element_test);
     mu_run_test(two_element_test);
     mu_run_test(addFirst_test);
+    mu_run_test(addLast_test);
     return 0;
 }
 
