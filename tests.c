@@ -46,9 +46,13 @@ static char * get_test() {
 static char * addFirst_test() {
     myList = getNewLinkedList();
 
+    mu_assert("size should be 0", size(myList) == 0);
     add(5, myList);
+    mu_assert("size should be 1", size(myList) == 1);
     add(7, myList);
+    mu_assert("size should be 2", size(myList) == 2);
     addFirst(3, myList);
+    mu_assert("size should be 3", size(myList) == 3);
     // printf("res: %d\n",get(0, getNewLinkedList()));
     mu_assert("first element should be 3", get(0, myList) == 3);
     mu_assert("second element should be 3", get(1, myList) == 5);
