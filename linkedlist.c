@@ -136,19 +136,34 @@ int removeNode(int givenIndex, LinkedList * list)
 
 	if(size(list) == 1) {
 		int returnValue = list->first->value;
-		list->first == NULL;
-		list->last == NULL;
+		Node * removed = list->first;
+		list->first = NULL;
+		list->last = NULL;
+		free(removed);
 		return returnValue;
 	}
 
 	// lists of size > 1
 
-	int currentIndex = 1; // zero-indexed
+	if(givenIndex == 0) {
+		int returnValue = list->first->value;
+		Node * removed = list->first;
+		list->first = list->first->next;
+		free(removed);
+		return returnValue;
+	}
+
+	// we're guaranteed to have at least 2 elements in the list here,
+	// so we can set the first to previous and the second to current, 
+	// since at this point the node we're looking for is not the first one
+
+	int currentIndex = 1; // zero-indexed, so second node has index 1
 	Node * currentNode = list->first->next;
 	Node * previousNode = list->first;
 
-	while(currentIndex < givenIndex) {
+	while(currentIndex != givenIndex) {
 		if(currentNode->next == NULL) {
+			printf("Error, index out of bounds! \n");
 			return -1;
 		}
 		previousNode = currentNode;
@@ -159,7 +174,7 @@ int removeNode(int givenIndex, LinkedList * list)
 	int returnValue = currentNode->value;
 
 	// move references
-	previousNode->next == currentNode->next;
+	previousNode->next = currentNode->next;
 	if(list->last == currentNode) {
 		list->last = previousNode;
 	}

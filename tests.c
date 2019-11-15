@@ -24,8 +24,6 @@ static char * getLast_test() {
 
     add(7, myList);
     add(5, myList);
-    printf("resf : %d\n",getFirst(myList));
-    printf("resl : %d\n",getLast(myList));
     mu_assert("last element should be 5", getLast(myList) == 5);
 
     LinkedList * newList = getNewLinkedList();
@@ -97,6 +95,21 @@ static char * removeNode_and_size_test() {
     return 0;
 }
 
+static char * bad_flow_test() {
+    myList = getNewLinkedList();
+
+    add(5, myList);
+    add(7, myList);
+    addLast(3, myList);
+    mu_assert("get: negative index should return -1", get(-1, myList) == -1);
+    mu_assert("get: positive out of range index should return -1", get(3, myList) == -1);
+
+    mu_assert("removeNode: negative index should return -1", removeNode(-1, myList) == -1);
+    mu_assert("removeNode: positive out of range index should return -1", removeNode(3, myList) == -1);
+
+    return 0;
+}
+
 // ------------------------------------------------------------------------------------
 
 static char * all_tests() {
@@ -106,6 +119,7 @@ static char * all_tests() {
     mu_run_test(addFirst_test);
     mu_run_test(addLast_test);
     mu_run_test(removeNode_and_size_test);
+    mu_run_test(bad_flow_test);
     return 0;
 }
 
