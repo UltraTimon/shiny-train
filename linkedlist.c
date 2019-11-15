@@ -124,12 +124,47 @@ int size(LinkedList * list) {
 	return count;
 }
 
-int removeNode(int index, LinkedList * list)
+// 0-indexed
+int removeNode(int givenIndex, LinkedList * list)
 {
-	if(list == NULL || list->first == NULL)
-		return 0;
+	// lists of size == 0
 
-	return index;	
+	if(list == NULL || list->first == NULL)
+		return -1;
+
+	// lists of size == 1
+
+	if(size(list) == 1) {
+		int returnValue = list->first->value;
+		list->first == NULL;
+		list->last == NULL;
+		return returnValue;
+	}
+
+	// lists of size > 1
+
+	int currentIndex = 1; // zero-indexed
+	Node * currentNode = list->first->next;
+	Node * previousNode = list->first;
+
+	while(currentIndex < givenIndex) {
+		if(currentNode->next == NULL) {
+			return -1;
+		}
+		previousNode = currentNode;
+		currentNode = currentNode->next;
+		currentIndex++;
+	}
+
+	int returnValue = currentNode->value;
+
+	// move references
+	previousNode->next == currentNode->next;
+	if(list->last == currentNode) {
+		list->last = previousNode;
+	}
+
+	return returnValue;
 }
 
 int removeFirst(LinkedList * list) {
