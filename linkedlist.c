@@ -76,8 +76,10 @@ int get(int index, LinkedList * list)
 		return -1;
 	
 	while(count != index) {
-		if(current->next == NULL) 
+		if(current->next == NULL) {
+			printf("Error: Index out of bounds! Index: %d, Size of list: %d\n", index, size(list));
 			return -1;
+		}
 		current = current->next;
 		count++;
 	}
@@ -163,7 +165,7 @@ int removeNode(int givenIndex, LinkedList * list)
 
 	while(currentIndex != givenIndex) {
 		if(currentNode->next == NULL) {
-			printf("Error, index out of bounds! \n");
+			printf("Error: Index out of bounds! Index: %d, Size of list: %d\n", givenIndex, size(list));
 			return -1;
 		}
 		previousNode = currentNode;

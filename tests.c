@@ -36,7 +36,6 @@ static char * get_test() {
 
     add(5, myList);
     add(7, myList);
-    // printf("res: %d\n",get(2, myList));
     mu_assert("second element should be 7", get(1, myList) == 7);
     return 0;
 }
@@ -51,7 +50,6 @@ static char * addFirst_test() {
     mu_assert("size should be 2", size(myList) == 2);
     addFirst(3, myList);
     mu_assert("size should be 3", size(myList) == 3);
-    // printf("res: %d\n",get(0, getNewLinkedList()));
     mu_assert("first element should be 3", get(0, myList) == 3);
     mu_assert("second element should be 3", get(1, myList) == 5);
 
@@ -67,7 +65,6 @@ static char * addLast_test() {
     add(5, myList);
     add(7, myList);
     addLast(3, myList);
-    // printf("res: %d\n",get(0, getNewLinkedList()));
     mu_assert("last element should be 3", get(2, myList) == 3);
 
     LinkedList * newList = getNewLinkedList();
@@ -86,7 +83,6 @@ static char * removeNode_and_size_test() {
     mu_assert("last element is 3, should be returned by remove", removeNode(2, myList) == 3);
     mu_assert("size should be 2", size(myList) == 2);
     mu_assert("first element is 5, should be returned by remove", removeNode(0, myList) == 5);
-    printf("size: %d\n",size(myList));
     mu_assert("size should be 1", size(myList) == 1);
     mu_assert("only element is 7, should be returned by remove", removeNode(0, myList) == 7);
     mu_assert("size should be 0", size(myList) == 0);
@@ -110,6 +106,24 @@ static char * bad_flow_test() {
     return 0;
 }
 
+static char * remove_first_and_last_test() {
+    myList = getNewLinkedList();
+
+    add(5, myList);
+    add(7, myList);
+    add(3, myList);
+    mu_assert("last element is 3, should be returned by removeLast", removeLast(myList) == 3);
+    mu_assert("first element is 5, should be returned by removeFirst", removeFirst(myList) == 5);
+    mu_assert("only element is 7, should be returned by removeLast", removeLast(myList) == 7);
+
+    add(1, myList);
+    mu_assert("only element is 1, should be returned by removeFirst", removeFirst(myList) == 1);
+
+    mu_assert("removeLast on empty list should return -1", removeLast(myList) == -1);
+    mu_assert("removeFirst on empty list should return -1", removeFirst(myList) == -1);
+    return 0;
+}
+
 // ------------------------------------------------------------------------------------
 
 static char * all_tests() {
@@ -120,6 +134,7 @@ static char * all_tests() {
     mu_run_test(addLast_test);
     mu_run_test(removeNode_and_size_test);
     mu_run_test(bad_flow_test);
+    mu_run_test(remove_first_and_last_test);
     return 0;
 }
 
