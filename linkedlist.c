@@ -109,14 +109,12 @@ int getLast(LinkedList * list)
 }
 
 int size(LinkedList * list) {
-	if(list == NULL)
+	
+	if(list == NULL || list->first == NULL)
 		return 0;
 
-	int count = 0;
+	int count = 1;
 	Node * current = list->first;
-
-	if(current != NULL)
-		count++;
 
 	while(current->next != NULL) {
 		current = current->next;
@@ -128,32 +126,10 @@ int size(LinkedList * list) {
 
 int removeNode(int index, LinkedList * list)
 {
-	if(list == NULL)
-		return -1;
+	if(list == NULL || list->first == NULL)
+		return 0;
 
-	int count = 0;
-	Node * current = list->first;
-	Node * previous = NULL;
-
-	while(count != index) {
-		if(current->next == NULL)
-			return -1;
-		
-		previous = current;
-		current = current->next;
-
-		count++;
-	}
-
-	if(previous != NULL) 	
-		previous->next = current->next;
-	
-
-	if(index == 0) {
-		list->first = list->first->next;
-	}
-
-	return current->value;
+	return index;	
 }
 
 int removeFirst(LinkedList * list) {
