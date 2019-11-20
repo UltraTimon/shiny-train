@@ -127,7 +127,7 @@ int size(LinkedList * list) {
 }
 
 // 0-indexed
-int removeNode(int givenIndex, LinkedList * list)
+int removeNode(int indexToRemove, LinkedList * list)
 {
 	// lists of size == 0
 
@@ -147,7 +147,7 @@ int removeNode(int givenIndex, LinkedList * list)
 
 	// lists of size > 1
 
-	if(givenIndex == 0) {
+	if(indexToRemove == 0) {
 		int returnValue = list->first->value;
 		Node * removed = list->first;
 		list->first = list->first->next;
@@ -163,9 +163,9 @@ int removeNode(int givenIndex, LinkedList * list)
 	Node * currentNode = list->first->next;
 	Node * previousNode = list->first;
 
-	while(currentIndex != givenIndex) {
+	while(currentIndex != indexToRemove) {
 		if(currentNode->next == NULL) {
-			printf("Error: Index out of bounds! Index: %d, Size of list: %d\n", givenIndex, size(list));
+			printf("Error: Index out of bounds! Index: %d, Size of list: %d\n", indexToRemove, size(list));
 			return -1;
 		}
 		previousNode = currentNode;
@@ -181,6 +181,7 @@ int removeNode(int givenIndex, LinkedList * list)
 		list->last = previousNode;
 	}
 
+	free(currentNode);
 	return returnValue;
 }
 
@@ -192,4 +193,8 @@ int removeLast(LinkedList * list) {
 	return removeNode(size(list) - 1, list);
 }
 
-
+void removeAllNodes(LinkedList * list) {
+	for(int i = 0; i < size(list); i++) {
+		removeNode(i, list);
+	}
+}
