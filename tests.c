@@ -2,6 +2,7 @@
 #include "minunit.h"
 #include "linkedlist.h"
 #include <string.h>
+#include "example_use.h"
 
 int tests_run = 0;
 
@@ -147,6 +148,8 @@ int main(int argc, char **argv) {
         printf("ALL TESTS PASSED\n");
     }
     printf("Tests run: %d\n", tests_run);
+
+    use_case();
 
     return result != 0;
 }

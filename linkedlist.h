@@ -28,7 +28,9 @@ int getLast();
 int removeNode(int index, LinkedList * list);
 int removeFirst(LinkedList * list);
 int removeLast(LinkedList * list);
+void removeAllNodes(LinkedList * list);
 
 int size(LinkedList * list);
+
 
 #endif

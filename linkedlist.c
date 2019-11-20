@@ -191,3 +191,5 @@ int removeFirst(LinkedList * list) {
 int removeLast(LinkedList * list) {
 	return removeNode(size(list) - 1, list);
 }
+
+
