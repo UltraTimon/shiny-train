@@ -24,7 +24,7 @@ int use_case() {
         printf("%d\n", get(index, list));
     }
      
-    removeList(list);
-    printf("the end!\n");
+    destroyList(list);
+    printf("the end! %d\n", size(list));
     return 0;
 }

@@ -192,10 +192,20 @@ int removeLast(LinkedList * list) {
 }
 
 // frees the list pointer, sets it to NULL
-void removeList(LinkedList * list) {
-	for(int i = 0; i < size(list); i++) {
-		removeNode(i, list);
+// and removes all nodes
+void destroyList(LinkedList * list) {
+	while(size(list) > 0) {
+		removeFirst(list);
+		printf("d:d\n");
+		printAllElements(list);
+		printf("- size: %d\n", size(list));
 	}
 	free(list);
 	list = NULL;
+}
+
+void printAllElements(LinkedList * list) {
+	for(int i = 0; i < size(list); i++) {
+		printf("ell: %d\n", get(i, list));
+	}
 }
