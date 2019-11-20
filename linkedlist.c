@@ -193,8 +193,11 @@ int removeLast(LinkedList * list) {
 	return removeNode(size(list) - 1, list);
 }
 
+// frees the list pointer, sets it to NULL
 void removeAllNodes(LinkedList * list) {
 	for(int i = 0; i < size(list); i++) {
 		removeNode(i, list);
 	}
+	free(list);
+	list = NULL;
 }

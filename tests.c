@@ -125,6 +125,19 @@ static char * remove_first_and_last_test() {
     return 0;
 }
 
+static char * remove_all_nodes_test() {
+    myList = getNewLinkedList();
+
+    add(5, myList);
+    add(7, myList);
+    add(3, myList);
+    mu_assert("size should be 3 after inserting", size(myList) == 3);
+    removeAllNodes(myList);
+    mu_assert("size should be 0 after removing all nodes", size(myList) == 0);
+    mu_assert("pointer to list should be NULL", myList == NULL);
+    return 0;
+}
+
 // ------------------------------------------------------------------------------------
 
 static char * all_tests() {
@@ -136,6 +149,7 @@ static char * all_tests() {
     mu_run_test(removeNode_and_size_test);
     mu_run_test(bad_flow_test);
     mu_run_test(remove_first_and_last_test);
+    mu_run_test(remove_all_nodes_test);
     return 0;
 }
 
