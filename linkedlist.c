@@ -109,9 +109,8 @@ int getLast(LinkedList * list)
 		return node->value;
 }
 
-int size(LinkedList * list) {
-	
-	if(list == NULL || list->first == NULL)
+int size(LinkedList * list) {	
+	if(list->first == NULL)
 		return 0;
 
 	int count = 1;
@@ -191,21 +190,21 @@ int removeLast(LinkedList * list) {
 	return removeNode(size(list) - 1, list);
 }
 
-// frees the list pointer, sets it to NULL
-// and removes all nodes
+// removes all nodes and frees the list pointer
+// once this method is called on a LinkedList, the 
+// pointer is freed, and thus invalid. You shouldn't
+// use it anymore!
 void destroyList(LinkedList * list) {
+	if(list == NULL)
+		return;
+	
+	if(size(list) == 0) {
+		free(list);
+		return;
+	}
+
 	while(size(list) > 0) {
 		removeFirst(list);
-		printf("d:d\n");
-		printAllElements(list);
-		printf("- size: %d\n", size(list));
 	}
 	free(list);
-	list = NULL;
-}
-
-void printAllElements(LinkedList * list) {
-	for(int i = 0; i < size(list); i++) {
-		printf("ell: %d\n", get(i, list));
-	}
 }

@@ -146,11 +146,8 @@ static char * remove_list_test() {
     add(1, myList);
     add(2, myList);
     add(3, myList);
-    mu_assert("size should be 3 after inserting", size(myList) == 3);
+    mu_assert("aa size should be 3 after inserting", size(myList) == 3);
     destroyList(myList);
-    printf("size of list after removing: %d\n", size(myList));
-    mu_assert("size should be 0 after removing all nodes", size(myList) == 0);
-    mu_assert("pointer to list should be NULL", myList == NULL);
     return 0;
 }
 
