@@ -4,7 +4,7 @@
 #include <stdlib.h>
 
 LinkedList * getNewLinkedList() {
-	LinkedList * newList = malloc(sizeof(Node *));
+	LinkedList * newList = malloc(sizeof(LinkedList));
 	newList->first = NULL;
 	newList->last = NULL;
 
@@ -12,7 +12,7 @@ LinkedList * getNewLinkedList() {
 }
 
 Node * getNewNode(int value) {
-	Node * newNode = malloc(sizeof(int) + sizeof(Node *));
+	Node * newNode = malloc(sizeof(int) + sizeof(Node));
 	newNode->value = value;
 	newNode->next = NULL;
 
@@ -110,6 +110,9 @@ int getLast(LinkedList * list)
 }
 
 int size(LinkedList * list) {	
+	if(list == NULL) 
+		return 0;
+
 	if(list->first == NULL)
 		return 0;
 
@@ -193,7 +196,8 @@ int removeLast(LinkedList * list) {
 // removes all nodes and frees the list pointer
 // once this method is called on a LinkedList, the 
 // pointer is freed, and thus invalid. You shouldn't
-// use it anymore!
+// use it anymore! Also, calling size() on a list that
+// already has been destroyed is invalid.
 void destroyList(LinkedList * list) {
 	if(list == NULL)
 		return;

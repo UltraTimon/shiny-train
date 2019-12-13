@@ -136,8 +136,8 @@ static char * size_test() {
     addFirst(7, myList);
     addFirst(7, myList);
     addFirst(7, myList);
+    mu_assert("size should be 7 after adding 7 elements to list", size(myList) == 7);
     destroyList(myList);
-    mu_assert("size should be 0 after destroying list", size(myList) == 0);
     return 0;
 }
 static char * remove_list_test() {

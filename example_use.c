@@ -25,6 +25,6 @@ int use_case() {
     }
      
     destroyList(list);
-    printf("the end! %d\n", size(list));
+    printf("the end! Thanks for watching, see you next time!\n");
     return 0;
 }
