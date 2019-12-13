@@ -6,22 +6,18 @@
 
 int tests_run = 0;
 
-// Setup
-
-LinkedList * myList;
-
-// --------------------------------------------------------------------------------
-
 static char * getFirst_test() {
-    myList = getNewLinkedList();
+    LinkedList * myList = getNewLinkedList();
 
     add(5, myList);
     mu_assert("first element should be 5", getFirst(myList) == 5);
+
+    destroyList(myList);
     return 0;
 }
 
 static char * getLast_test() {
-    myList = getNewLinkedList();
+    LinkedList * myList = getNewLinkedList();
 
     add(7, myList);
     add(5, myList);
@@ -29,20 +25,26 @@ static char * getLast_test() {
 
     LinkedList * newList = getNewLinkedList();
     mu_assert("getlast should return NULL on empty list", getLast(newList) == -1);
+
+    destroyList(myList);
+    destroyList(newList);
     return 0;
 }
 
 static char * get_test() {
-    myList = getNewLinkedList();
+    LinkedList * myList = getNewLinkedList();
 
     add(5, myList);
     add(7, myList);
     mu_assert("second element should be 7", get(1, myList) == 7);
+
+
+    destroyList(myList);
     return 0;
 }
 
 static char * addFirst_test() {
-    myList = getNewLinkedList();
+    LinkedList * myList = getNewLinkedList();
 
     mu_assert("size should be 0", size(myList) == 0);
     add(5, myList);
@@ -57,11 +59,14 @@ static char * addFirst_test() {
     LinkedList * newList = getNewLinkedList();
     addFirst(3, newList);
     mu_assert("first element should be 3, even with a new list", get(0, newList) == 3);
+
+    destroyList(myList);
+    destroyList(newList);
     return 0;
 }
 
 static char * addLast_test() {
-    myList = getNewLinkedList();
+    LinkedList * myList = getNewLinkedList();
 
     add(5, myList);
     add(7, myList);
@@ -71,11 +76,14 @@ static char * addLast_test() {
     LinkedList * newList = getNewLinkedList();
     addLast(3, newList);
     mu_assert("last element should be 3, even with a new list", get(0, newList) == 3);
+
+    destroyList(myList);
+    destroyList(newList);
     return 0;
 }
 
 static char * removeNode_and_size_test() {
-    myList = getNewLinkedList();
+    LinkedList * myList = getNewLinkedList();
 
     add(5, myList);
     add(7, myList);
@@ -89,11 +97,13 @@ static char * removeNode_and_size_test() {
     mu_assert("size should be 0", size(myList) == 0);
 
     mu_assert("removeNode on empty list should return -1 regardless of index", removeNode(1253, myList) == -1);
+
+    destroyList(myList);
     return 0;
 }
 
 static char * bad_flow_test() {
-    myList = getNewLinkedList();
+    LinkedList * myList = getNewLinkedList();
 
     add(5, myList);
     add(7, myList);
@@ -104,11 +114,12 @@ static char * bad_flow_test() {
     mu_assert("removeNode: negative index should return -1", removeNode(-1, myList) == -1);
     mu_assert("removeNode: positive out of range index should return -1", removeNode(3, myList) == -1);
 
+    destroyList(myList);
     return 0;
 }
 
 static char * remove_first_and_last_test() {
-    myList = getNewLinkedList();
+    LinkedList * myList = getNewLinkedList();
 
     add(5, myList);
     add(7, myList);
@@ -122,11 +133,13 @@ static char * remove_first_and_last_test() {
 
     mu_assert("removeLast on empty list should return -1", removeLast(myList) == -1);
     mu_assert("removeFirst on empty list should return -1", removeFirst(myList) == -1);
+
+    destroyList(myList);
     return 0;
 }
 
 static char * size_test() {
-    myList = getNewLinkedList();
+    LinkedList * myList = getNewLinkedList();
     mu_assert("size should be 0 after inserting nothing", size(myList) == 0);
     addFirst(7, myList);
     mu_assert("size should be 1 after inserting one element", size(myList) == 1);
@@ -137,16 +150,18 @@ static char * size_test() {
     addFirst(7, myList);
     addFirst(7, myList);
     mu_assert("size should be 7 after adding 7 elements to list", size(myList) == 7);
+
     destroyList(myList);
     return 0;
 }
 static char * remove_list_test() {
-    myList = getNewLinkedList();
+    LinkedList * myList = getNewLinkedList();
 
     add(1, myList);
     add(2, myList);
     add(3, myList);
     mu_assert("aa size should be 3 after inserting", size(myList) == 3);
+
     destroyList(myList);
     return 0;
 }
